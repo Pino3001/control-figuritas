@@ -1,0 +1,52 @@
+import '../Estilos/EstiloBotones.css';
+import Button from '@mui/material/Button';
+import { Box, Grid } from '@mui/material';
+import { amber } from '@mui/material/colors';
+import Mascota from '../Imagenes/Mascota.png';
+import Titulo_Mundial from '../Imagenes/Titulo_Mundial.png';
+
+function Botones() {
+  const estilo = { bgcolor: amber[700], borderRadius: 3, color: 'black', fontFamily: 'cursive',  minWidth: 296 };
+  return (
+    <div className='Inicio'>
+      <Box display='flex' alingItems='center' justifyContent='center' sx={{ marginTop: { xs: 'unset', md: -20 } }}  >
+        <img className='Titulo'
+          src={Titulo_Mundial} alt='Mundial' />
+      </Box>
+      <div className='Boton'>
+        <Grid sx={{ marginTop: -10 }} >
+          <div> 
+            <Button href="/jugadores/agregar" variant="contained"  size='large' 
+              sx= {estilo}>
+              Insertar Jugador Repetido
+            </Button>
+          </div>
+          <div>
+            <Button href="/extras/agregar" variant="contained"  size='large'
+              sx={estilo} >
+              Insertar Figuritas Extras
+            </Button>
+          </div>
+          <div>
+            <Button href="/jugadores" variant="contained"  size='large'
+              sx={estilo} >
+              Ver Jugadores Repetidos
+            </Button>
+          </div>
+          <div>
+            <Button href="/extras" variant="contained"  size='large'
+              sx={estilo} >
+              Ver Figuritas Extras
+            </Button>
+          </div>
+        </Grid>
+      </div >
+      <Box width={300} alignItems='flex-start' justifyContent={'flex-start'} justifyItems={'flex-start'} display='flex' sx={{ marginTop: { xs: 'unset', md: -45 } }}  >
+        <img
+          className='Panini'
+          src={Mascota} alt='Mascota mundial' />
+      </Box>
+    </div>
+  );
+}
+export default Botones;

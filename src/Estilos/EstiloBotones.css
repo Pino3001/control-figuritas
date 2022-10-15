@@ -1,0 +1,33 @@
+.MuiFormHelperText-root {
+    font-size: 15px !important;
+    color: rgb(255, 217, 0) !important;
+    font-family: cursive !important;
+    display: block !important;
+}
+.MuiTypography-root {
+    color:gold !important;    
+    display: block !important;
+}
+.Boton{
+  width: 300px;
+  margin: auto;
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+
+}
+.Ingreso{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+}
+.Mascota {
+    max-width: 130px;
+    max-height: 113px;
+    padding-left: 40px;
+}
+.Titulo{
+    max-width: 600px;
+    max-height: 300px;
+}

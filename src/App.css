@@ -1,0 +1,14 @@
+.App {
+  font-size: 80px;
+  font-style: oblique;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  color: gold;
+}
+html,
+body{
+  background-color: rgb(102, 4, 4);
+  border-radius: 5;
+  border-color: gold;
+}
+
+
