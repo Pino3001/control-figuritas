@@ -1,70 +1,82 @@
-# Getting Started with Create React App
+Aplicacion para el control de stickers del mundial, la misma se conecta a una base de datos mediante una API Node js.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Para el diseño de esta APP se utilizo JavaScript y componentes de Material UI.
 
-## Available Scripts
+A continuacion coloco el diseño de las tablas de PostgreSQL para poder reproducir el funcionamiento de la misma.
 
-In the project directory, you can run:
+TABLA PAIS:
 
-### `npm start`
+CREATE TABLE IF NOT EXISTS public."Pais"
+(
+    "ID" character varying(4) COLLATE pg_catalog."default" NOT NULL,
+    "Nombre" character varying(20) COLLATE pg_catalog."default" NOT NULL,
+    "Grupo" character varying(10) COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT "Pais_pkey" PRIMARY KEY ("ID")
+)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+TABLESPACE pg_default;
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+ALTER TABLE IF EXISTS public."Pais"
+    OWNER to postgres;
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+TABLA JUGADORES:
 
-### `npm run build`
+CREATE TABLE IF NOT EXISTS public."Jugadores"
+(
+    "IDpais" character varying COLLATE pg_catalog."default" NOT NULL,
+    "Numero" integer NOT NULL,
+    "Nombre" character varying(30) COLLATE pg_catalog."default" NOT NULL,
+    "Posicion" character varying(20) COLLATE pg_catalog."default" NOT NULL,
+    "FechaNacimiento" timestamp without time zone NOT NULL,
+    "Debut" integer NOT NULL,
+    "Peso" integer NOT NULL,
+    "Altura" integer NOT NULL,
+    "Club" character varying(20) COLLATE pg_catalog."default" NOT NULL,
+    "Cantijuga" integer,
+    CONSTRAINT "IDpais_key" PRIMARY KEY ("IDpais", "Numero"),
+    CONSTRAINT "IDpais" FOREIGN KEY ("IDpais")
+        REFERENCES public."Pais" ("ID") MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION,
+    CONSTRAINT "Num_Fkey" FOREIGN KEY ("Numero")
+        REFERENCES public."NumerosContr" ("Numero_fig") MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+        NOT VALID
+)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+TABLESPACE pg_default;
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+ALTER TABLE IF EXISTS public."Jugadores"
+    OWNER to postgres;
+    
+    TABLA FIGURITASEXTRAS:
+    
+    CREATE TABLE IF NOT EXISTS public."FiguritasExtras"
+(
+    "IDfig" character varying(6) COLLATE pg_catalog."default" NOT NULL,
+    "NumEX" integer NOT NULL,
+    "Tipo" character varying(20) COLLATE pg_catalog."default" NOT NULL,
+    "Descri" character varying(30) COLLATE pg_catalog."default",
+    cantiextra integer,
+    CONSTRAINT "FiguritasExtras_pkey" PRIMARY KEY ("IDfig")
+)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+TABLESPACE pg_default;
 
-### `npm run eject`
+ALTER TABLE IF EXISTS public."FiguritasExtras"
+    OWNER to postgres;
+    
+    TABLA NUMEROSCONTR:
+    
+    CREATE TABLE IF NOT EXISTS public."NumerosContr"
+(
+    "Numero_fig" integer NOT NULL,
+    CONSTRAINT "NumerosContr_pkey" PRIMARY KEY ("Numero_fig")
+)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+TABLESPACE pg_default;
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+ALTER TABLE IF EXISTS public."NumerosContr"
+    OWNER to postgres;
