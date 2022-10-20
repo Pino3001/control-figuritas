@@ -47,7 +47,7 @@ TABLA JUGADORES:
     ALTER TABLE IF EXISTS public."Jugadores"
     OWNER to postgres;
     
-    TABLA FIGURITASEXTRAS:
+   TABLA FIGURITASEXTRAS:
     
     CREATE TABLE IF NOT EXISTS public."FiguritasExtras"
     ( "IDfig" character varying(6) COLLATE pg_catalog."default" NOT NULL,
@@ -62,7 +62,7 @@ TABLA JUGADORES:
     ALTER TABLE IF EXISTS public."FiguritasExtras"
     OWNER to postgres;
     
-    TABLA NUMEROSCONTR:
+   TABLA NUMEROSCONTR:
     
     CREATE TABLE IF NOT EXISTS public."NumerosContr"
     ( "Numero_fig" integer NOT NULL,
