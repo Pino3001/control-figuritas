@@ -6,25 +6,22 @@ A continuacion coloco el diseño de las tablas de PostgreSQL para poder reproduc
 
 TABLA PAIS:
 
-CREATE TABLE IF NOT EXISTS public."Pais"
-(
-    "ID" character varying(4) COLLATE pg_catalog."default" NOT NULL,
+    CREATE TABLE IF NOT EXISTS public."Pais"
+    ( "ID" character varying(4) COLLATE pg_catalog."default" NOT NULL,
     "Nombre" character varying(20) COLLATE pg_catalog."default" NOT NULL,
     "Grupo" character varying(10) COLLATE pg_catalog."default" NOT NULL,
-    CONSTRAINT "Pais_pkey" PRIMARY KEY ("ID")
-)
+    CONSTRAINT "Pais_pkey" PRIMARY KEY ("ID") )
 
-TABLESPACE pg_default;
+    TABLESPACE pg_default;
 
-ALTER TABLE IF EXISTS public."Pais"
+    ALTER TABLE IF EXISTS public."Pais"
     OWNER to postgres;
 
 
 TABLA JUGADORES:
 
-CREATE TABLE IF NOT EXISTS public."Jugadores"
-(
-    "IDpais" character varying COLLATE pg_catalog."default" NOT NULL,
+    CREATE TABLE IF NOT EXISTS public."Jugadores"
+    ( "IDpais" character varying COLLATE pg_catalog."default" NOT NULL,
     "Numero" integer NOT NULL,
     "Nombre" character varying(30) COLLATE pg_catalog."default" NOT NULL,
     "Posicion" character varying(20) COLLATE pg_catalog."default" NOT NULL,
@@ -43,40 +40,35 @@ CREATE TABLE IF NOT EXISTS public."Jugadores"
         REFERENCES public."NumerosContr" ("Numero_fig") MATCH SIMPLE
         ON UPDATE NO ACTION
         ON DELETE NO ACTION
-        NOT VALID
-)
+        NOT VALID )
 
-TABLESPACE pg_default;
+    TABLESPACE pg_default;
 
-ALTER TABLE IF EXISTS public."Jugadores"
+    ALTER TABLE IF EXISTS public."Jugadores"
     OWNER to postgres;
     
     TABLA FIGURITASEXTRAS:
     
     CREATE TABLE IF NOT EXISTS public."FiguritasExtras"
-(
-    "IDfig" character varying(6) COLLATE pg_catalog."default" NOT NULL,
+    ( "IDfig" character varying(6) COLLATE pg_catalog."default" NOT NULL,
     "NumEX" integer NOT NULL,
     "Tipo" character varying(20) COLLATE pg_catalog."default" NOT NULL,
     "Descri" character varying(30) COLLATE pg_catalog."default",
     cantiextra integer,
-    CONSTRAINT "FiguritasExtras_pkey" PRIMARY KEY ("IDfig")
-)
+    CONSTRAINT "FiguritasExtras_pkey" PRIMARY KEY ("IDfig") )
 
-TABLESPACE pg_default;
+    TABLESPACE pg_default;
 
-ALTER TABLE IF EXISTS public."FiguritasExtras"
+    ALTER TABLE IF EXISTS public."FiguritasExtras"
     OWNER to postgres;
     
     TABLA NUMEROSCONTR:
     
     CREATE TABLE IF NOT EXISTS public."NumerosContr"
-(
-    "Numero_fig" integer NOT NULL,
-    CONSTRAINT "NumerosContr_pkey" PRIMARY KEY ("Numero_fig")
-)
+    ( "Numero_fig" integer NOT NULL,
+    CONSTRAINT "NumerosContr_pkey" PRIMARY KEY ("Numero_fig") )
 
-TABLESPACE pg_default;
+    TABLESPACE pg_default;
 
-ALTER TABLE IF EXISTS public."NumerosContr"
+    ALTER TABLE IF EXISTS public."NumerosContr"
     OWNER to postgres;
